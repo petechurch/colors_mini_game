@@ -1,7 +1,12 @@
 package com.minigame.colorboard.test;
 
 import com.minigame.colorboard.board.Board;
+import com.minigame.colorboard.solver.Move;
+import com.minigame.colorboard.solver.Step;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SolverTest {
 
@@ -10,18 +15,14 @@ public class SolverTest {
 
     @Test
     public void solve() {
-        Board board = new Board(TOTAL_ROWS, TOTAL_COLS);
+        Move move1 = new Move( 4, 3, 0, 1, Step.First);
+        Move move2 = new Move( 4, 3, 0, 1, Step.Second);
+        Move move3 = new Move( 4, 3, 0, 1, Step.First);
 
-        System.out.println("Begin unit tests");
-        for (int row = 0; row < TOTAL_ROWS; row++) {
-            for (int col = 0; col < TOTAL_COLS; col++) {
-                System.out.println(board.toString());
-                System.out.println("Flipping (" + row + ", " + col + ")");
-                board.applyMove(row, col, 0);
-                System.out.println(board.toString());
-                board.applyMove(row, col, 0);
-            }
-        }
-        System.out.println("End unit tests");
+        System.out.println("Move1 hashcode: " + move1.hashCode() );
+        System.out.println("Move2 hashcode: " + move2.hashCode() );
+        System.out.println("Move3 hashcode: " + move3.hashCode() );
+        assertNotEquals(move1, move2);
+        assertNotEquals(move1, move3);
     }
 }

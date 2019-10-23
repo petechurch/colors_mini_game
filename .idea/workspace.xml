@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7cf91365-9933-4ee3-ad2a-0268b33ab58f" name="Default Changelist" comment="" />
+    <list default="true" id="7cf91365-9933-4ee3-ad2a-0268b33ab58f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/test/SolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/test/SolverTest.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +20,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1SUBrcWblfxzsVzIQclkVrbxQnh" />
   <component name="PropertiesComponent">
@@ -24,7 +34,8 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TeraBots/PlayBot" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TeraBots/PlayBot/src/com/tera/playbot/util/PlayBotHelper.java" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -97,6 +108,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -105,11 +127,28 @@
           <line>72</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="board.isSolved()" language="JAVA" />
+        <watch expression="firstCheck.equals(first)" language="JAVA" />
+        <watch expression="secondCheck.equals(second)" language="JAVA" />
+        <watch expression="thirdCheck.equals(third)" language="JAVA" />
+        <watch expression="fourthCheck.equals(fourth)" language="JAVA" />
+        <watch expression="fifthCheck.equals(fifth)" language="JAVA" />
+        <watch expression="fifthCheck.hashCode()" language="JAVA" />
+        <watch expression="fifth.hashCode()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

@@ -3,31 +3,35 @@ package com.minigame.colorboard.solver;
 import java.util.ArrayList;
 
 public class MoveGenerator  {
+    private Step currentStep;
     private int maxRows;
     private int maxCols;
+    private int attemptedMoves;
 
-    private ArrayList<Move> currentMoves = new ArrayList<>();
+    private ArrayList<Move> currentMoves = new ArrayList();
 
     public MoveGenerator(int maxRows, int maxCols) {
         this.maxRows = maxRows;
         this.maxCols = maxCols;
+        this.currentStep = Step.First;
+        this.attemptedMoves = 0;
     }
 
-    public Move getNextMove() {
+    public ArrayList<Move> nextMoves() {
         Move nextMove = null;
 
+        attemptedMoves ++;
+
         if (currentMoves.size() == 0) {
-            nextMove = new Move(maxRows, maxCols, 0, 0, 0);
+            nextMove = new Move(maxRows, maxCols, 0, 0, currentStep);
             currentMoves.add(nextMove);
 
-            return nextMove;
+            return currentMoves;
         }
 
-        int currentDepth = 0;
         boolean canIncrement = true;
         for (Move currentMoveCheck : currentMoves) {
             nextMove = currentMoveCheck;
-            currentDepth = Math.max(currentDepth, currentMoveCheck.getDepth());
             canIncrement = currentMoveCheck.increment();
             if(canIncrement) {
                 break;
@@ -35,11 +39,26 @@ public class MoveGenerator  {
         }
 
         if(!canIncrement) {
-            nextMove = new Move(maxRows, maxCols, 0, 0, (currentDepth + 1));
-            currentMoves.add(nextMove);
+            currentStep = Step.nextStep(currentStep);
+            nextMove = new Move(maxRows, maxCols, 0, 0, currentStep);
+            currentMoves.add(0, nextMove);
         }
 
-        return nextMove;
+        return reverseList(currentMoves);
+    }
+
+    private ArrayList<Move> reverseList(ArrayList<Move> moves) {
+        ArrayList<Move> reverseList = new ArrayList();
+
+        for(Move move : moves) {
+            reverseList.add(0, move);
+        }
+
+        return reverseList;
+    }
+
+    public int getAttemptedMoves() {
+        return attemptedMoves;
     }
 
     public String toString() {
