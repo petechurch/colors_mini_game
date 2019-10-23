@@ -2,14 +2,16 @@ package com.minigame.colorboard.board;
 
 import com.minigame.colorboard.solver.Move;
 
+import java.util.ArrayList;
+
 public class Board {
+    private Cell[][] board;
     private int maxRows;
     private int maxCols;
-    private Cell[][] board;
 
-    public Board(int rows, int cols) {
-        this.maxRows = rows;
-        this.maxCols = cols;
+    public Board(int maxRows, int maxCols) {
+        this.maxRows = maxRows;
+        this.maxCols = maxCols;
         this.board = new Cell[maxRows][maxCols];
 
         for (int row = 0; row < maxRows; row++) {
@@ -23,30 +25,32 @@ public class Board {
             for (int col = 0; col < maxCols; col++) {
                 Cell currentCell = board[row][col];
 
-                Cell neighbor;
+                Cell neighborNorth = null;
+                Cell neighborEast  = null;
+                Cell neighborSouth = null;
+                Cell neighborWest  = null;
+
                 //north neighbor
-                if(col+1 < maxCols) {
-                    neighbor = board[row][col+1];
-                    currentCell.addNeighbor(neighbor);
+                if(col+1 < this.maxCols) {
+                    neighborNorth = board[row][col+1];
                 }
 
                 //east neighbor
-                if(row+1 < maxRows) {
-                    neighbor = board[row+1][col];
-                    currentCell.addNeighbor(neighbor);
+                if(row+1 < this.maxRows) {
+                    neighborEast = board[row+1][col];
                 }
 
                 //south neighbor
                 if(col-1 >= 0) {
-                    neighbor = board[row][col-1];
-                    currentCell.addNeighbor(neighbor);
+                    neighborSouth = board[row][col-1];
                 }
 
                 //west neighbor
                 if(row-1 >= 0) {
-                    neighbor = board[row-1][col];
-                    currentCell.addNeighbor(neighbor);
+                    neighborWest = board[row-1][col];
                 }
+
+                currentCell.setNeighbors(neighborNorth, neighborEast, neighborSouth, neighborWest);
             }
         }
     }
@@ -62,7 +66,7 @@ public class Board {
         }
 
         Cell cell = board[row][col];
-        cell.setCurrentColor(Color.Red);
+        cell.setInitialColor(Color.Red);
     }
 
     public void initializeBlue(int row, int col) {
@@ -75,7 +79,7 @@ public class Board {
         }
 
         Cell cell = board[row][col];
-        cell.setCurrentColor(Color.Blue);
+        cell.setInitialColor(Color.Blue);
     }
 
     public void reset() {
@@ -88,15 +92,8 @@ public class Board {
     }
 
     public void applyMove(Move move) {
-        //System.out.println("Before flip:\n" + this.toString());
-        Cell cell = board[move.row][move.col];
+        Cell cell = board[move.getRow()][move.getCol()];
         cell.flipColor();
-        //System.out.println("After flip:\n" + this.toString());
-    }
-
-    public void applyMove(int row, int col, int depth) {
-        Move move = new Move(maxRows, maxCols, row, col, 0);
-        applyMove(move);
     }
 
     public boolean isSolved() {
@@ -114,6 +111,8 @@ public class Board {
     public String toString() {
 
         StringBuilder builder = new StringBuilder();
+        builder.append("\n");
+
         for (int row = 0; row < maxRows; row++) {
 
             builder.append("+");

@@ -3,9 +3,14 @@ package com.minigame.colorboard.board;
 import java.util.ArrayList;
 
 public class Cell {
-    private ArrayList<Cell> myNeighbors;
+    private Cell neighborNorth;
+    private Cell neighborEast;
+    private Cell neighborSouth;
+    private Cell neighborWest;
+
     private Color initialColor;
     private Color currentColor;
+
     private int row;
     private int col;
 
@@ -16,19 +21,23 @@ public class Cell {
         this.row = row;
         this.col = col;
 
-        myNeighbors = new ArrayList<>();
     }
 
-    void addNeighbor(Cell neighbor) { myNeighbors.add(neighbor); }
+    void setNeighbors(Cell north, Cell east, Cell south, Cell west) {
+        neighborNorth = north;
+        neighborEast  = east;
+        neighborSouth = south;
+        neighborWest  = west;
+    }
 
-    void setInitialColor(Color color) { initialColor = color; currentColor = color; }
     void resetColor() { currentColor = initialColor; }
+    void setInitialColor(Color color) { initialColor = color; currentColor = color; }
     void setCurrentColor(Color color) { currentColor = color; }
 
     boolean isRed() { return currentColor.isRed(); }
     boolean isBlue() { return currentColor.isBlue(); }
 
-    private void flipColor(boolean doRecurse) {
+    private void flipColor(boolean flipNeighbors) {
         switch(currentColor) {
             case Red: {
                 setCurrentColor(Color.Blue);
@@ -40,12 +49,22 @@ public class Cell {
             }
         }
 
-        if(doRecurse) {
-            for (Cell neighbor : myNeighbors) {
-                neighbor.flipColor(false);
+        if(flipNeighbors) {
+            if(neighborNorth != null) {
+                neighborNorth.flipColor(!flipNeighbors);
+            }
+            if(neighborEast != null) {
+                neighborEast.flipColor(!flipNeighbors);
+            }
+            if(neighborSouth != null) {
+                neighborSouth.flipColor(!flipNeighbors);
+            }
+            if(neighborWest != null) {
+                neighborWest.flipColor(!flipNeighbors);
             }
         }
     }
+
 
     public void flipColor() {
         flipColor(true);

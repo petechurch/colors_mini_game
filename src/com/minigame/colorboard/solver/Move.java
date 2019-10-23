@@ -4,16 +4,16 @@ public class Move {
     private int maxRows;
     private int maxCols;
 
-    public int row;
-    public int col;
-    public int depth;
+    private int  row;
+    private int  col;
+    private Step step;
 
-    public Move(int maxRows, int maxCols, int row, int col, int depth) {
+    public Move(int maxRows, int maxCols, int row, int col, Step step) {
         this.maxRows = maxRows;
         this.maxCols = maxCols;
         this.row = row;
         this.col = col;
-        this.depth = depth;
+        this.step = step;
     }
 
     public boolean increment() {
@@ -32,17 +32,9 @@ public class Move {
         return canIncrement;
     }
 
-    public int getRow() {
-        return row;
-    }
-    public int getCol() {
-        return col;
-    }
-    public int getDepth() {
-        return depth;
-    }
-    public Move copy() { return new Move(maxRows, maxCols, row, col, depth); }
-    public String toString() {
-        return String.format("(%d,%d,%d)", row, col, depth);
-    }
+    public int  getRow() { return row; }
+    public int  getCol() { return col; }
+    public Step getStep() { return step; }
+
+    public String toString() { return String.format("(%d,%d,%s)", row, col, step.name()); }
 }
