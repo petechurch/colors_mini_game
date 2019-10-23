@@ -18,6 +18,10 @@ public enum Step {
         this.stepValue = value;
     }
 
+    public int getValue() {
+        return stepValue;
+    }
+
     public static Step nextStep(Step currentStep) {
         for (Step nextStep : Step.values()) {
             if (nextStep.stepValue > currentStep.stepValue) {

@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cf91365-9933-4ee3-ad2a-0268b33ab58f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/util/Helper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/test/SolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/test/SolverTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -137,11 +132,23 @@
           <line>40</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="board.isSolved()" language="JAVA" />
+        <watch expression="firstCheck.equals(first)" language="JAVA" />
+        <watch expression="secondCheck.equals(second)" language="JAVA" />
+        <watch expression="thirdCheck.equals(third)" language="JAVA" />
+        <watch expression="fourthCheck.equals(fourth)" language="JAVA" />
+        <watch expression="fifthCheck.equals(fifth)" language="JAVA" />
+        <watch expression="fifthCheck.hashCode()" language="JAVA" />
+        <watch expression="fifth.hashCode()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

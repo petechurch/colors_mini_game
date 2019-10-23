@@ -42,25 +42,25 @@ public class Solver {
         System.exit(0);
  */
 
-        board.initializeRed(0, 0);
-        board.initializeRed(0, 1);
-        board.initializeRed(0, 2);
-        board.initializeRed(0, 3);
-        board.initializeRed(0, 4);
+        board.initializeBlue(0, 0);
+        board.initializeBlue(0, 1);
+        board.initializeBlue(0, 2);
+        board.initializeBlue(0, 3);
+        board.initializeBlue(0, 4);
 
-        board.initializeRed(1, 0);
-        board.initializeBlue(1, 1);
+        board.initializeBlue(1, 0);
+        board.initializeRed(1, 1);
         board.initializeBlue(1, 2);
-        board.initializeRed(1, 3);
-        board.initializeRed(1, 4);
+        board.initializeBlue(1, 3);
+        board.initializeBlue(1, 4);
 
         board.initializeBlue(2, 0);
-        board.initializeRed(2, 1);
-        board.initializeRed(2, 2);
+        board.initializeBlue(2, 1);
+        board.initializeBlue(2, 2);
         board.initializeBlue(2, 3);
         board.initializeBlue(2, 4);
 
-        board.initializeRed(3, 0);
+        board.initializeBlue(3, 0);
         board.initializeBlue(3, 1);
         board.initializeBlue(3, 2);
         board.initializeBlue(3, 3);
@@ -83,7 +83,8 @@ public class Solver {
             ArrayList<Move> nextMoves = generator.nextMoves();
 
             board.reset();
-            /* (2,2,Fifth) (3,4,Fourth) (0,1,Third) (0,1,Second) (2,1,First)  */
+            assertMoves(nextMoves);
+
             System.out.print(String.format("Attempting Moves(%d): %s\r", generator.getAttemptedMoves(), generator.toString()));
             logIt(DEBUG, board.toString());
             for(Move move : nextMoves) {
@@ -95,7 +96,36 @@ public class Solver {
         }
 
         logIt("Solved");
+        logIt(board.toString());
         logIt(generator.toString());
+    }
+
+    private void assertMoves(ArrayList<Move> moves) {
+
+        /* (2,2,Fifth) (3,4,Fourth) (0,1,Third) (0,1,Second) (2,1,First)  */
+        /*
+        Move first  = new Move(TOTAL_ROWS, TOTAL_COLS, 2, 1, Step.First);
+        Move second = new Move(TOTAL_ROWS, TOTAL_COLS, 0, 1, Step.Second);
+        Move third  = new Move(TOTAL_ROWS, TOTAL_COLS, 0, 1, Step.Third);
+        Move fourth = new Move(TOTAL_ROWS, TOTAL_COLS, 3, 4, Step.Fourth);
+        Move fifth  = new Move(TOTAL_ROWS, TOTAL_COLS, 2, 2, Step.Fifth);
+
+        if(moves.size() == 5) {
+            Move firstCheck  = moves.get(0);
+            Move secondCheck = moves.get(1);
+            Move thirdCheck  = moves.get(2);
+            Move fourthCheck = moves.get(3);
+            Move fifthCheck  = moves.get(4);
+
+            if(firstCheck.equals(first)   &&
+               secondCheck.equals(second) &&
+               thirdCheck.equals(third)   &&
+               fourthCheck.equals(fourth) &&
+               fifthCheck.equals(fifth)) {
+                System.out.println("OK THIS SHOULD BE A WINNER");
+            }
+        }
+         */
     }
 
     public static void main(String[] args) {
