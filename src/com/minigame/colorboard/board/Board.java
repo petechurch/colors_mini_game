@@ -1,6 +1,8 @@
 package com.minigame.colorboard.board;
 
 import com.minigame.colorboard.solver.Move;
+import com.minigame.colorboard.solver.Step;
+import com.minigame.colorboard.util.Helper;
 
 import java.util.ArrayList;
 
@@ -8,6 +10,18 @@ public class Board {
     private Cell[][] board;
     private int maxRows;
     private int maxCols;
+
+    public Board(int maxRows, int maxCols, boolean create) {
+        this(maxRows, maxCols);
+
+        for (int row = 0; row < maxRows; row++) {
+            for (int col = 0; col < maxCols; col++) {
+                board[row][col].setInitialColor(Color.Blue);
+            }
+        }
+
+        randomeCreate();
+    }
 
     public Board(int maxRows, int maxCols) {
         this.maxRows = maxRows;
@@ -53,8 +67,53 @@ public class Board {
                 currentCell.setNeighbors(neighborNorth, neighborEast, neighborSouth, neighborWest);
             }
         }
+
+        initialize();
     }
 
+    private void randomeCreate() {
+        ArrayList<Move> moves = new ArrayList();
+        Step currentStep = Step.First;
+
+        int totalSteps = Helper.random(4,9);
+        for(int i = 0; i < totalSteps; i++ ) {
+            int row = Helper.random(0, maxRows-1);
+            int col = Helper.random(0, maxCols-1);
+
+            Move move = new Move(maxRows, maxCols, row, col, currentStep);
+            moves.add(move);
+            applyMove(move);
+            currentStep = Step.nextStep(currentStep);
+        }
+        System.out.println(this.toString());
+        System.out.println(moves);
+    }
+
+    private void initialize() {
+        initializeRed(0, 0);
+        initializeRed(0, 1);
+        initializeBlue(0, 2);
+        initializeRed(0, 3);
+        initializeRed(0, 4);
+
+        initializeBlue(1, 0);
+        initializeBlue(1, 1);
+        initializeRed(1, 2);
+        initializeBlue(1, 3);
+        initializeRed(1, 4);
+
+        initializeRed(2, 0);
+        initializeBlue(2, 1);
+        initializeBlue(2, 2);
+        initializeBlue(2, 3);
+        initializeBlue(2, 4);
+
+        initializeBlue(3, 0);
+        initializeRed(3, 1);
+        initializeBlue(3, 2);
+        initializeRed(3, 3);
+        initializeBlue(3, 4);
+    }
 
     public void initializeRed(int row, int col) {
         if(row < 0 || row >= maxRows) {
@@ -108,6 +167,12 @@ public class Board {
         return true;
     }
 
+    @Override
+    public Object clone() {
+        return new Board(maxRows, maxCols);
+    }
+
+    @Override
     public String toString() {
 
         StringBuilder builder = new StringBuilder();

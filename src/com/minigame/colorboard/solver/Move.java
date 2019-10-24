@@ -62,6 +62,12 @@ public class Move {
         return (left.hashCode() == right.hashCode());
     }
 
+    @Override
+    public Object clone() {
+        return new Move(this.maxRows, this.maxCols, this.row, this.col, this.step);
+    }
+
+    @Override
     public int hashCode() {
         int hash = 7;
 
@@ -75,6 +81,7 @@ public class Move {
     }
 
 
+    @Override
     public String toString() {
         return String.format("(%d,%d,%s)", row, col, step.name());
     }
