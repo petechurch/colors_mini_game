@@ -1,7 +1,5 @@
 package com.minigame.colorboard.board;
 
-import java.util.ArrayList;
-
 public class Cell {
     private Cell neighborNorth;
     private Cell neighborEast;
@@ -30,9 +28,10 @@ public class Cell {
         neighborWest  = west;
     }
 
-    void resetColor() { currentColor = initialColor; }
-    void setInitialColor(Color color) { initialColor = color; currentColor = color; }
-    void setCurrentColor(Color color) { currentColor = color; }
+    void  resetColor() { currentColor = initialColor; }
+    Color getInitialColor() { return initialColor; }
+    void  setInitialColor(Color color) { initialColor = color; currentColor = color; }
+    void  setCurrentColor(Color color) { currentColor = color; }
 
     boolean isRed() { return currentColor.isRed(); }
     boolean isBlue() { return currentColor.isBlue(); }
