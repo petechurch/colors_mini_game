@@ -20,7 +20,7 @@ public class Helper {
     }
 
     public static void logIt(String message) {
-        String messagePrefix = String.format("[%1$-23s] %2$-45s- ", dateFormat.format(new Date()), getCallingMethod());
+        String messagePrefix = String.format("[%1$-23s] %2$-15s %3$-50s- ", dateFormat.format(new Date()), Thread.currentThread().getName(), getCallingMethod());
 
         System.out.println(String.format("%s%s", messagePrefix, message));
     }

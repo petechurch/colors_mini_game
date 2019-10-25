@@ -3,16 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="7cf91365-9933-4ee3-ad2a-0268b33ab58f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/test/SolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/test/SolverTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="CoverageViewManager">
     <option name="myElementSize" value="241" />
@@ -39,7 +44,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -62,6 +67,7 @@
     <configuration name="Solver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.minigame.colorboard.solver.Solver" />
       <module name="Mini Game Colors" />
+      <option name="VM_PARAMETERS" value="-Xmx16G" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.minigame.colorboard.game.*" />
@@ -113,7 +119,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -128,14 +136,29 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="27" />
+          <line>50</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
