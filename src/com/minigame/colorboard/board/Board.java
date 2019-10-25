@@ -90,28 +90,28 @@ public class Board {
     }
 
     private void initialize() {
-        initializeRed(0, 0);
-        initializeRed(0, 1);
+        initializeBlue(0, 0);
+        initializeBlue(0, 1);
         initializeBlue(0, 2);
-        initializeRed(0, 3);
-        initializeRed(0, 4);
+        initializeBlue(0, 3);
+        initializeBlue(0, 4);
 
         initializeBlue(1, 0);
-        initializeBlue(1, 1);
-        initializeRed(1, 2);
+        initializeRed(1, 1);
+        initializeBlue(1, 2);
         initializeBlue(1, 3);
-        initializeRed(1, 4);
+        initializeBlue(1, 4);
 
-        initializeRed(2, 0);
+        initializeBlue(2, 0);
         initializeBlue(2, 1);
         initializeBlue(2, 2);
         initializeBlue(2, 3);
         initializeBlue(2, 4);
 
         initializeBlue(3, 0);
-        initializeRed(3, 1);
+        initializeBlue(3, 1);
         initializeBlue(3, 2);
-        initializeRed(3, 3);
+        initializeBlue(3, 3);
         initializeBlue(3, 4);
     }
 

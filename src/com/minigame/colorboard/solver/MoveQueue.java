@@ -1,9 +1,6 @@
 package com.minigame.colorboard.solver;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
+import java.util.*;
 
 public class MoveQueue
         implements Queue {
@@ -90,11 +87,19 @@ public class MoveQueue
 
     @Override
     public synchronized Object remove() {
-        if(queue.size() == 0) {
+        final int startIndex = 0;
+        final int endIndex = Math.min(100000, queue.size());
+
+        if(endIndex == 0) {
             return null;
         }
 
-        return queue.remove(0);
+        ArrayList<ArrayList<Move>> workList = new ArrayList();
+        List<ArrayList<Move>> temp = queue.subList(startIndex, endIndex);
+        workList.addAll(temp);
+        temp.clear();
+
+        return workList;
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.minigame.colorboard.solver;
 
 import com.minigame.colorboard.board.Board;
-import org.apache.commons.lang3.mutable.MutableInt;
+import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.apache.commons.lang3.mutable.MutableLong;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import static com.minigame.colorboard.util.Helper.logIt;
 
@@ -13,62 +13,57 @@ public class Worker
 
     private final boolean DEBUG = false;
 
-    private MutableInt     totalWorkUnits;
+    private MutableBoolean shouldContinue;
+    private MutableLong    totalWorkUnits;
     private MoveQueue      moveQueue;
     private Board          board;
     private String         name;
-    private int myWorkUnits;
+    private long           myWorkUnits;
 
-    public Worker(MutableInt totalWorkUnits, MoveQueue moveQueue, Board board, String name) {
+    public Worker(MutableBoolean shouldContinue, MutableLong totalWorkUnits, MoveQueue moveQueue, Board board, String name) {
+        this.shouldContinue = shouldContinue;
         this.totalWorkUnits = totalWorkUnits;
-        this.moveQueue = moveQueue;
-        this.board = board;
-        this.name = name;
-        this.myWorkUnits = 0;
+        this.myWorkUnits    = 0;
+        this.moveQueue      = moveQueue;
+        this.board          = board;
+        this.name           = name;
     }
 
     public void run() {
-        ArrayList<Move> nextMoves;
-        long startTime;
+        ArrayList<ArrayList<Move>> nextMoveList;
 
         Thread.currentThread().setName(name);
         logIt("Solving");
 
-        startTime = System.currentTimeMillis();
-        while(true) {
-            nextMoves = (ArrayList<Move>)moveQueue.remove();
-            if(nextMoves == null) {
+        while(shouldContinue.isTrue()) {
+            nextMoveList = (ArrayList<ArrayList<Move>>)moveQueue.remove();
+            if(nextMoveList == null) {
                 try { Thread.sleep(250); } catch (Exception ex) {}
                 continue;
             }
-            myWorkUnits++;
-            synchronized (totalWorkUnits) {
+
+            for(ArrayList<Move> nextMoves : nextMoveList) {
+                myWorkUnits++;
                 totalWorkUnits.add(1);
-            }
 
-            if(DEBUG) {
-                logIt("Applying moves: " + nextMoves );
-            }
+                if(DEBUG) {
+                    logIt("Applying moves: " + nextMoves );
+                }
 
-            if(myWorkUnits % 10000 == 0 ) {
-                long currentTime = System.currentTimeMillis();
-                long diff = currentTime - startTime;
-                long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
-                long total = totalWorkUnits.getValue();
-                logIt(String.format("Queue size: %1$-3d  Work Units [%2$-7d/%3$-7d] (%d/s)", moveQueue.size(), myWorkUnits, total, (int)((double)total/(double)seconds)));
-            }
+                for(Move move : nextMoves) {
+                    board.applyMove(move);
+                }
 
-            for(Move move : nextMoves) {
-                board.applyMove(move);
+                if(board.isSolved()) {
+                    shouldContinue.setFalse();
+                    try { Thread.sleep(250); } catch (Exception ex) {}
+                    logIt(board.toString());
+                    logIt("Solved: " + nextMoves.toString());
+                    break;
+                }
+                board.reset();
             }
-
-            if(board.isSolved()) {
-                try { Thread.sleep(250); } catch (Exception ex) {}
-                logIt(board.toString());
-                logIt("Solved: " + nextMoves.toString());
-                System.exit(0);
-            }
-            board.reset();
         }
+        logIt(String.format("Worker(%s) exiting.", name));
     }
 }

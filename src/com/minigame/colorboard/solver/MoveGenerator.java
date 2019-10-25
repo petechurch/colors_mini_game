@@ -1,6 +1,9 @@
 package com.minigame.colorboard.solver;
 
+import org.apache.commons.lang3.mutable.MutableBoolean;
+
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import static com.minigame.colorboard.util.Helper.logIt;
 
@@ -9,38 +12,47 @@ public class MoveGenerator
 
     private final boolean DEBUG = false;
 
+    private MutableBoolean shouldContinue;
     private MoveQueue      moveQueue;
-    private Step           currentStep;
+    private long           generatedMoves;
     private int            maxRows;
     private int            maxCols;
-    private int            attemptedMoves;
+    private Step           currentStep;
 
     private ArrayList<Move> currentMoves = new ArrayList();
 
-    public MoveGenerator(MoveQueue moveQueue, int maxRows, int maxCols) {
-        this.maxRows = maxRows;
-        this.maxCols = maxCols;
-        this.currentStep = Step.First;
-        this.attemptedMoves = 0;
-        this.moveQueue = moveQueue;
+    public MoveGenerator(MutableBoolean shouldContinue, MoveQueue moveQueue, int maxRows, int maxCols) {
+        this.shouldContinue = shouldContinue;
+        this.moveQueue      = moveQueue;
+        this.maxRows        = maxRows;
+        this.maxCols        = maxCols;
+        this.currentStep    = Step.First;
+        this.generatedMoves = 0;
     }
 
     @Override
     public void run() {
         Thread.currentThread().setName("MoveGenerator");
-        Thread.currentThread().setPriority(Thread.NORM_PRIORITY+2);
+        Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
         generator();
     }
 
     private void generator() {
-        int workUnits = 0;
+        long workUnits = 0;
 
-        while (true) {
+        long startTime = System.currentTimeMillis();
+        while (shouldContinue.isTrue()) {
             ArrayList<Move> nextMoves = nextMoves();
             moveQueue.add(nextMoves);
             workUnits++;
-            if(workUnits % 100000 == 0) {
-                logIt(String.format("Queue(%d) Current moves: %s\r", moveQueue.size(), nextMoves));
+            if(workUnits % 5000000 == 0) {
+                long endTime = System.currentTimeMillis();
+                long diff = endTime - startTime;
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
+                long total = workUnits;
+                long unitsPerSecond = (long)((float)total/(float)seconds);
+
+                logIt(String.format("Queue size: %,11d  Rate: %,11d/s  Current moves: %s", moveQueue.size(), unitsPerSecond, nextMoves));
             }
         }
     }
@@ -48,7 +60,7 @@ public class MoveGenerator
     private ArrayList<Move> nextMoves() {
         Move nextMove = null;
 
-        attemptedMoves++;
+        generatedMoves++;
 
         if (currentMoves.size() == 0) {
             nextMove = new Move(maxRows, maxCols, 0, 0, currentStep);
@@ -83,12 +95,15 @@ public class MoveGenerator
        return copyMoves;
     }
 
-    public int getAttemptedMoves() {
-        return attemptedMoves;
+    public long getGeneratedMoves() {
+        return generatedMoves;
     }
 
     public String toString() {
         StringBuilder builder = new StringBuilder();
+
+        builder.append("Generated moves: " + generatedMoves);
+        builder.append(" ");
 
         for (Move move : currentMoves) {
             builder.append(move.toString());
