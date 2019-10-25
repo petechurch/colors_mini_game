@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7cf91365-9933-4ee3-ad2a-0268b33ab58f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/MoveQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Solver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Step.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/minigame/colorboard/solver/Worker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
